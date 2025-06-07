@@ -10,7 +10,7 @@ import cv2
 from matplotlib.image import imread
 
 import tensorflow as tf
-from keras.utils.np_utils import to_categorical
+from tensorflow.keras.utils import to_categorical
 from keras.preprocessing import image
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
@@ -22,8 +22,8 @@ import random
 
 random.seed(100)
 
-dicom_data = pd.read_csv('/kaggle/input/cbis-ddsm-breast-cancer-image-dataset/csv/dicom_info.csv')
-image_dir = '/kaggle/input/cbis-ddsm-breast-cancer-image-dataset/jpeg'
+dicom_data = pd.read_csv(r"C:\Users\ROG\Desktop\Machine Learning\ILC early detection\Data\archive (1)\csv\dicom_info.csv")
+image_dir = r"C:\Users\ROG\Desktop\Machine Learning\ILC early detection\Data\archive (1)\jpeg"
 
 dicom_data.head()
 
@@ -62,11 +62,11 @@ for file  in ROI_mask_images[0:10]:
     gray_img= ROI_mask_images_show.convert("L")
     plt.imshow(gray_img, cmap='gray')
 
-calc_case_df = pd.read_csv('/kaggle/input/cbis-ddsm-breast-cancer-image-dataset/csv/calc_case_description_train_set.csv')
+calc_case_df = pd.read_csv(r"C:\Users\ROG\Desktop\Machine Learning\ILC early detection\Data\archive (1)\csv\calc_case_description_train_set.csv")
 
 calc_case_df.head(5)
 
-mass_case_df = pd.read_csv('/kaggle/input/cbis-ddsm-breast-cancer-image-dataset/csv/mass_case_description_train_set.csv')
+mass_case_df = pd.read_csv(r"C:\Users\ROG\Desktop\Machine Learning\ILC early detection\Data\archive (1)\csv\mass_case_description_train_set.csv")
 
 mass_case_df.head(5)
 

@@ -4,8 +4,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
 from tensorflow.keras.preprocessing import image
+import sys
+sys.path.append(r"C:\Users\ROG\Desktop\Machine Learning\ILC early detection\Data")
 
-breast_imgs = glob.glob('/kaggle/input/breast-histopathology-images/IDC_regular_ps50_idx5/**/*.png', recursive = True)
+from Datacleaning import Data_cleaning_1, Data_cleaning_2, dicom_cleaned_data, dicom_data
+
+breast_imgs = glob.glob('C:/Users/ROG/Desktop/Machine Learning/ILC early detection/Data/archive/IDC_regular_ps50_idx5/**/*.png', recursive = True)
 for imgname in breast_imgs[:5]:
     print(imgname)
 
@@ -76,7 +80,10 @@ z = pd.DataFrame(Data_cleaning_1['calc_type'].value_counts())
 z = z.reset_index()
 z= z.rename(columns={'calc_type':'calc_type_counts'})
 z
-
+import numpy as np
+import matplotlib.pyplot as plt
+from tensorflow.keras.preprocessing.image import load_img, img_to_array
+# Visualizing some images of cancer and non-cancer cases
 plt.figure(figsize = (15, 15))
 
 some_non = np.random.randint(0, len(non_cancer_imgs), 18)
@@ -84,23 +91,26 @@ some_can = np.random.randint(0, len(cancer_imgs), 18)
 
 s = 0
 for num in some_non:
+    img = load_img(non_cancer_imgs[num], target_size=(100, 100))
+    img = img_to_array(img)
     
-        img = image.image_utils.load_img((non_cancer_imgs[num]), target_size=(100, 100))
-        img = image.image_utils.img_to_array(img)
-        
-        plt.subplot(6, 6, 2*s+1)
-        plt.axis('off')
-        plt.title('no cancer')
-        plt.imshow(img.astype('uint8'))
-        s += 1
-        
+    plt.subplot(6, 6, 2*s+1)
+    plt.axis('off')
+    plt.title('no cancer')
+    plt.imshow(img.astype('uint8'))
+    s += 1
+
 s = 1
 for num in some_can:
+    img = load_img(cancer_imgs[num], target_size=(100, 100))
+    img = img_to_array(img)
     
-        img = image.image_utils.load_img((cancer_imgs[num]), target_size=(100, 100))
-        img = image.image_utils.img_to_array(img)
-        plt.subplot(6, 6, 2*s)
-        plt.axis('off')        
-        plt.title('cancer')
-        plt.imshow(img.astype('uint8'))
-        s += 1
+    plt.subplot(6, 6, 2*s)
+    plt.axis('off')        
+    plt.title('cancer')
+    plt.imshow(img.astype('uint8'))
+    s += 1
+
+plt.tight_layout()
+plt.show()
+
