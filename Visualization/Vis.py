@@ -112,5 +112,5 @@ for num in some_can:
     s += 1
 
 plt.tight_layout()
-plt.show()
+plt.show(block=False)
 

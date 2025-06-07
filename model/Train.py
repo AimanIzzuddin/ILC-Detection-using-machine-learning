@@ -6,6 +6,9 @@ import seaborn as sns
 
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
+import sys
+sys.path.append(r"C:\Users\ROG\Desktop\Machine Learning\ILC early detection\Visualization")
+from Vis import breast_imgs, non_cancer_imgs, cancer_imgs
 
 import tensorflow as tf
 from tensorflow.keras.utils import to_categorical
