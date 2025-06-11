@@ -70,7 +70,7 @@ X = []  # List for image data
 y = []  # List for labels
 
 # Concatenate the arrays 'non_img_arr' and 'can_img_arr' into a single array 'breast_img_arr'
-breast_img_arr = np.concatenate((non_img_arr, can_img_arr))
+breast_img_arr = non_img_arr + can_img_arr  # No need for np.concatenate
 
 # Shuffle the elements in the 'breast_img_arr' array randomly
 random.shuffle(breast_img_arr)
@@ -85,6 +85,9 @@ for feature, label in breast_img_arr:
 # Convert the lists 'X' and 'y' into NumPy arrays
 X = np.array(X)
 y = np.array(y)
+
+# ✅ Convert X to float16 for memory efficiency
+X = X.astype(np.float16) / 255.0  # Normalize as well
 
 # Print the shape of the 'X' array
 print('X shape: {}'.format(X.shape))
