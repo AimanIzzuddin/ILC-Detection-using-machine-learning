@@ -1,3 +1,4 @@
 archive*
 *.pyc
 __pycache__/
+*.bat
