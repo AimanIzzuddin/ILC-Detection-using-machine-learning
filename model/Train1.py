@@ -20,13 +20,13 @@ import sys
 import math
 
 # Add the root project directory to Python's search path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from Utils.Datavis import dicom_cleaned_data, Data_cleaning_1, Data_cleaning_2, non_cancer_imgs, cancer_imgs
+sys.path.append(r"C:\Users\ROG\Desktop\Machine Learning\ILC early detection\Visualization")
+from Vis import dicom_cleaned_data, Data_cleaning_1, Data_cleaning_2, non_cancer_imgs, cancer_imgs
 
 print("2")
 
 # Randomly sample images from two lists
-MAX_IMAGES = 100000
+MAX_IMAGES = 200000
 some_can_img = cancer_imgs.copy()
 num_can = len(some_can_img)
 num_non_needed = MAX_IMAGES - num_can
