@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ILC Early Detection</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<header>
+  <div id="menu-icon">
+     <i class="fas fa-bars"></i>
+  </div>
+  <h1>ILC Early Detection</h1>    
+</header>
+
+  <div id="sidebar">
+     <li><a href="Index.html">Home</a></li>
+    <li><a href="Train.html">Train</a></li>
+    <li><a href="Gallery.html">Gallery</a></li>
+    <li><a href="About.html">About</a></li>
+    <li><a href="Contact.html">Contact</a></li>
+    <li><a href="Settings.html" class="settings-link">Settings</a></li>
+  </div>
+  <div class="page-wrapper">
+
+    <div class="container">
+
+
+      <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="imageInput" name="file" accept="image/*" required />
+        <div id="fileName"></div>
+        <img id="preview" alt="Preview" />
+        <br><br>
+        <button type="submit">Upload & Predict</button>
+      </form>
+
+      <pre id="result"></pre>
+    </div>
+
+   <footer>
+  <div class="footer-left">
+    <a href="https://www.linkedin.com/in/YOUR_USERNAME" target="_blank"><i class="fab fa-linkedin fa-lg"></i></a>
+    <a href="https://github.com/YOUR_USERNAME" target="_blank"><i class="fab fa-github fa-lg"></i></a>
+    <a href="https://www.instagram.com/Manzu567" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+  </div>
+
+  <div class="footer-right">
+    &copy; 2025 ILC AI Detection System. All rights reserved.
+  </div>
+</footer>
+
+
+  </div>
+
+  <script>
+    const imageInput = document.getElementById('imageInput');
+    const fileNameDiv = document.getElementById('fileName');
+    const preview = document.getElementById('preview');
+    const resultDiv = document.getElementById('result');
+    const menuIcon = document.getElementById('menu-icon');
+    const sidebar = document.getElementById('sidebar');
+
+    menuIcon.onclick = () => {
+      sidebar.classList.toggle('active');
+    };
+    // Auto-close sidebar on outside click
+    document.addEventListener('click', (e) => {
+      if (!sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
+        sidebar.classList.remove('active');
+      }
+    });
+
+    imageInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        fileNameDiv.textContent = `Selected file: ${file.name}`;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        fileNameDiv.textContent = '';
+        preview.src = '';
+        preview.style.display = 'none';
+      }
+    });
+
+    document.getElementById("uploadForm").onsubmit = async function (e) {
+      e.preventDefault();
+      const formData = new FormData();
+      const file = imageInput.files[0];
+      if (!file) {
+        resultDiv.innerText = "Please select an image first.";
+        return;
+      }
+
+      formData.append("file", file);
+
+      try {
+        const res = await fetch("http://localhost:5000/upload", {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await res.json();
+        resultDiv.innerText = JSON.stringify(data, null, 2);
+        console.log("Upload result:", data);
+      } catch (err) {
+        console.error("Upload error:", err);
+        resultDiv.innerText = "An error occurred while uploading.";
+      }
+    };
+  </script>
+</body>
+</html>

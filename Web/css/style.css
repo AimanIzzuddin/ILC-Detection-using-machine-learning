@@ -1,9 +1,125 @@
-body {
-  font-family: Arial, sans-serif;
+/* header*/
+header {
+  background-color: #03fcbe;
+  color: #333;
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* space between icon and h1 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+}
+#menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+}
+
+/* Sidebar */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -220px;
+  width: 200px;
+  height: 100%;
+  background-color: #222;
+  color: white;
+  padding-top: 60px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+#sidebar.active {
+  left: 0;
+}
+
+#sidebar a {
+  display: block;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: white;
+}
+
+#sidebar a:hover {
+  background-color: #03fcbe;
+  color: black;
+}
+
+#sidebar .settings-link {
+  margin-top: auto; /* Pushes this item to the bottom */
+  background-color: #111; /* Optional: slight variation */
+}
+/* Page Content */
+.content {
   padding: 20px;
-  background-color: #f5f5f5;
+}
+
+/* Reset default margins and make sure body fills the height */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Main wrapper that handles sticky footer layout */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Content container grows to fill space above footer */
+.container {
+  flex: 1;
+  padding: 20px;
   text-align: center;
 }
-label {
+
+form {
+  margin-top: 20px;
+}
+
+#fileName {
+  margin-top: 10px;
   font-weight: bold;
 }
+
+#preview {
+  display: block;
+  margin: 20px auto;
+  width: 50%;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  height: auto;
+}
+
+pre#result {
+  margin-top: 20px;
+  text-align: left;
+  display: inline-block;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 90%;
+  overflow-x: auto;
+}
+
+/* Footer stays at bottom */
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #03fcbe;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.footer-left a {
+  margin-right: 15px;
+}
+
+
