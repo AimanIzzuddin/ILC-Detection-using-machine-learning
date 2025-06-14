@@ -1,18 +1,25 @@
-/* header*/
+/* General Reset */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* Header */
 header {
   background-color: #03fcbe;
   color: #333;
   padding: 5px 20px;
   display: flex;
   align-items: center;
-  gap: 15px; /* space between icon and h1 */
+  gap: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  font-size: 14px;
 }
+
 #menu-icon {
   font-size: 24px;
   cursor: pointer;
-  margin-right: 15px;
   display: flex;
   align-items: center;
 }
@@ -29,6 +36,7 @@ header {
   padding-top: 60px;
   transition: left 0.3s ease;
   z-index: 1000;
+  overflow-y: auto;
 }
 
 #sidebar.active {
@@ -48,35 +56,24 @@ header {
 }
 
 #sidebar .settings-link {
-  margin-top: auto; /* Pushes this item to the bottom */
-  background-color: #111; /* Optional: slight variation */
-}
-/* Page Content */
-.content {
-  padding: 20px;
+  background-color: #111;
 }
 
-/* Reset default margins and make sure body fills the height */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-/* Main wrapper that handles sticky footer layout */
+/* Page Layout */
 .page-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Content container grows to fill space above footer */
 .container {
   flex: 1;
   padding: 20px;
   text-align: center;
+  overflow-y: auto;
 }
 
+/* Form Elements */
 form {
   margin-top: 20px;
 }
@@ -88,7 +85,7 @@ form {
 
 #preview {
   display: block;
-  margin: 20px auto;
+  margin: 0; /* remove vertical gap */
   width: 50%;
   max-width: 300px;
   border: 1px solid #ccc;
@@ -96,6 +93,31 @@ form {
   height: auto;
 }
 
+.preview-result-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px; /* tighter spacing between image and result */
+  margin-top: 10px;  /* reduce top gap */
+  flex-wrap: wrap;
+}
+
+#result-box {
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  padding: 10px 15px;
+  max-width: 300px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+#result {
+  font-family: monospace;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 6px;
+  white-space: pre-wrap;
+}
+
+/* Prediction Result */
 pre#result {
   margin-top: 20px;
   text-align: left;
@@ -107,7 +129,7 @@ pre#result {
   overflow-x: auto;
 }
 
-/* Footer stays at bottom */
+/* Footer */
 footer {
   display: flex;
   justify-content: space-between;
@@ -120,6 +142,9 @@ footer {
 
 .footer-left a {
   margin-right: 15px;
+  color: #555;
 }
 
-
+.footer-left a:hover {
+  color: black;
+}
